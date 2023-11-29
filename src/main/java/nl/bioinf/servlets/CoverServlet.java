@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-@WebServlet(name = "WelcomeServlet", urlPatterns = "/welcome", loadOnStartup = 1)
-public class WelcomeServlet extends HttpServlet {
+
+@WebServlet(name = "CoverServlet", urlPatterns = "/index", loadOnStartup = 1)
+public class CoverServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         System.out.println("Initializing Thymeleaf template engine");
@@ -33,7 +33,6 @@ public class WelcomeServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        ctx.setVariable("currentDate", new Date());
         WebConfig.createTemplateEngine(getServletContext()).
                 process("index", ctx, response.getWriter());
     }
