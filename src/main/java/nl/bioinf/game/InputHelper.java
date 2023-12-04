@@ -14,5 +14,5 @@ public class InputHelper {
         return scanner.hasNextInt();
     }
 
-    //other input methods
+    //other input methods.
 }

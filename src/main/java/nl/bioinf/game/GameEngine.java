@@ -14,5 +14,6 @@ public class GameEngine {
 
         //start the first scenario
         ScenarioHandler.handleScenarioOne();
+        //follow scenarios here
     }
 }
