@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Thymeleaf Starter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous">
+</head>
+<body class="text-bg-dark">
+<div class="container text-center">
+  <div class="row gx-5">
+    <div class="col" >The first step in our journey involves creating a variable. A variable is a container
+      that stores our element.<br> We say 'let our container be x for our apples' with the statement x = apples.
+      Let us make a variable.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col p-2">X =
+    </div>
+    <div class="col p-2">
+      <input id="variable-x" type="text" class="form-control" placeholder="Element in container" aria-label="First name">
+    </div>
+    <button id="submit-variable-x" type="button" class="btn btn-primary">Submit</button>
+  </div>
+  <div id="step-two" class="row d-none" >
+    Step two
+    <input>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script th:src="@{/js/first_step.js}"></script>
+</body>
+</html>
