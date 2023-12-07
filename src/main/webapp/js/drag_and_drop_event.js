@@ -1,7 +1,10 @@
 // select the item element by id, that's what the # is for
-const item = document.querySelector('#item');
+const items = document.querySelectorAll('.item');
+
 // begin dragging event through the function dragstart
-item.addEventListener('dragstart', dragStart);
+items.forEach(item => {
+    item.addEventListener('dragstart', dragStart);
+})
 
 function dragStart(e) {
     e.dataTransfer.setData('text/plain', e.target.id);
