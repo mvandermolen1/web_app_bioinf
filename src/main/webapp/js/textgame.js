@@ -9,12 +9,14 @@ function startGame() {
 }
 
 function showTextNode(textNodeIndex) {
+    //takes text node for each point in array to show current textnode
     const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
     textElement.innerText = textNode.text
+    //removes options first initialized in the html file
     while (optionButtonsElement.firstChild) {
         optionButtonsElement.removeChild(optionButtonsElement.firstChild)
     }
-
+    //check if events are triggered
     textNode.options.forEach(option => {
         if (showOption(option)) {
             const button = document.createElement('button')
@@ -26,10 +28,12 @@ function showTextNode(textNodeIndex) {
     })
 }
 
+//check if there is a required state object, returns state
 function showOption(option) {
     return option.requiredState == null || option.requiredState(state)
 }
 
+//checks current state and overwrite the old state
 function selectOption(option) {
     const nextTextNodeId = option.nextText
     if (nextTextNodeId <= 0) {
