@@ -3,7 +3,7 @@ package nl.bioinf.game;
 import java.util.Scanner;
 
 public class InputHelper {
-    public static int getUserInput(String prompt){
+    public static boolean getUserInput(String prompt){
         System.out.println(prompt);
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNextInt()){
