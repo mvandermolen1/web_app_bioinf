@@ -14,7 +14,7 @@ function dragStart(e) {
 }
 
 // select element by class, that's what the . is for
-const boxes = document.querySelectorAll('.card');
+const boxes = document.querySelectorAll('.answer');
 
 // for each drop target, the cards, handle the events
 boxes.forEach(box => {
@@ -43,9 +43,16 @@ function drop(e) {
     // get the draggable element
     const id = e.dataTransfer.getData('text/plain');
     const draggable = document.getElementById(id);
+    // const defaultZone = document.getElementById("all")
+    const dropZone = this;
 
     // add it to the drop target
-    e.target.appendChild(draggable);
+    if (draggable.classList.contains(dropZone.id) || dropZone.id === "all"){
+        dropZone.appendChild(draggable);
+    }
+    // if(dropZone.to.childElementCount > 1){
+    //    defaultZone.appendChild(draggable);
+    // }
 
     // display the draggable element
     draggable.classList.remove('d-none');
