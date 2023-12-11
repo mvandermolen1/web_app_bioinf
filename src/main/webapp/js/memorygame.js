@@ -48,10 +48,10 @@ function startGame() {
             let cardImg = cardSet.pop();
             row.push(cardImg); //JS
 
-            // <img id="0-0" class="card" src="water.jpg">
             let card = document.createElement("img");
             card.id = r.toString() + "-" + c.toString();
-            card.src = cardImg + ".jpg";
+            card.src = "/images/" + cardImg + ".jpg";
+            console.log(card.src);
             card.classList.add("card");
             card.addEventListener("click", selectCard);
             document.getElementById("board").append(card);
