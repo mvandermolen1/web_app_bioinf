@@ -1,15 +1,15 @@
 var errors = 0;
 var cardList = [
-    "darkness",
-    "double",
-    "fairy",
-    "fighting",
-    "fire",
-    "grass",
-    "lightning",
-    "metal",
-    "psychic",
-    "water"
+    "monocyte",
+    "macrophage",
+    "mast_cell",
+    "dendritic_cell",
+    "nk_cell",
+    "neutrophil",
+    "eosinophil",
+    "basophil",
+    "tcell",
+    "bcell"
 ]
 
 
