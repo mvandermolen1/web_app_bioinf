@@ -1,22 +1,22 @@
 // select the item element by id, that's what the # is for
-const items = document.querySelectorAll('.item');
+const items = document.querySelectorAll(".item");
 
 // begin dragging event through the function dragstart
 items.forEach(item => {
-    item.addEventListener('dragstart', dragStart);
+    item.addEventListener("dragstart", dragStart);
 })
 
 function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
+    e.dataTransfer.setData("text/plain", e.target.id);
     setTimeout(() => {
-        e.target.classList.add('d-none');
+        e.target.classList.add("d-none");
     }, 0);
 }
 
 // select element by class, that's what the . is for
-const boxes = document.querySelectorAll('.answer');
+const boxes = document.querySelectorAll(".answer");
 
-// for each drop target, the cards, handle the events
+// for each drop target, handle the events
 boxes.forEach(box => {
     box.addEventListener('dragenter', dragEnter)
     box.addEventListener('dragover', dragOver);
@@ -24,36 +24,63 @@ boxes.forEach(box => {
     box.addEventListener('drop', drop);
 });
 
+// Removes the hide when drag stops
+document.addEventListener("dragend", function (event) {
+    event.target.classList.remove("d-none");
+});
+
+
 function dragEnter(e) {
     e.preventDefault();
-    e.target.classList.add('bg-success');
+    e.target.classList.add('bg-light');
 }
+
 
 function dragOver(e) {
     e.preventDefault();
-    e.target.classList.add('bg-success');
+    e.target.classList.add('bg-light');
 }
+
+
 
 function dragLeave(e) {
-    e.target.classList.remove('bg-success');
+    e.target.classList.remove('bg-light');
 }
+
 
 function drop(e) {
-    e.target.classList.remove('bg-success');
+    e.preventDefault();
     // get the draggable element
     const id = e.dataTransfer.getData('text/plain');
-    const draggable = document.getElementById(id);
-    // const defaultZone = document.getElementById("all")
-    const dropZone = this;
+    let draggable = document.getElementById(id);
 
-    // add it to the drop target
-    if (draggable.classList.contains(dropZone.id) || dropZone.id === "all"){
-        dropZone.appendChild(draggable);
-    }
-    // if(dropZone.to.childElementCount > 1){
-    //    defaultZone.appendChild(draggable);
-    // }
-
-    // display the draggable element
     draggable.classList.remove('d-none');
+    if(e.target.classList.contains("answer")){
+        e.target.classList.remove('bg-light');
+        draggable.classList.remove('d-none');
+        if(e.target.childElementCount !== 0){
+            let childP = e.target.getElementsByTagName("li")[0];
+            document.getElementById("all").appendChild(childP);
+        }
+        e.target.appendChild(draggable);
+        draggable = null;
+    }
 }
+
+document.getElementById("checkAnswer").addEventListener("click", function () {
+    let questions = document.getElementsByClassName("answer");
+    const answers = ["gene", "is equal to", "is not equal to"];
+    let score = 0;
+    let result = document.getElementById("result");
+    for (let i = 0; i < questions.length; i++) {
+        const element = questions[i];
+        let childP = element.getElementsByTagName("li")[0];
+        if (childP.innerText=== answers[i]){
+            score++
+        }
+        else{
+            childP.classList.add("bg-danger")
+        }
+    }
+    result.append(score + "/" + answers.length);
+})
