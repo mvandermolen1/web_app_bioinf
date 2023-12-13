@@ -1,7 +1,7 @@
 // select the item element by id, that's what the # is for
 const items = document.querySelectorAll(".item");
 
-// begin dragging event through the function dragstart
+// Add dragging event through the function dragstart
 items.forEach(item => {
     item.addEventListener("dragstart", dragStart);
 })
@@ -69,7 +69,7 @@ function drop(e) {
 
 document.getElementById("checkAnswer").addEventListener("click", function () {
     let questions = document.getElementsByClassName("answer");
-    const answers = ["gene", "is equal to", "is not equal to"];
+    const answers = ["nucleotide", "is equal to", "T", "U", "is not equal to"];
     let score = 0;
     let result = document.getElementById("result");
     for (let i = 0; i < questions.length; i++) {
