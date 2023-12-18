@@ -13,7 +13,6 @@ import java.io.IOException;
 public class DragDropServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
-        System.out.println("Initializing Thymeleaf template engine");
         final ServletContext servletContext = this.getServletContext();
         WebConfig.createTemplateEngine(servletContext);
     }
