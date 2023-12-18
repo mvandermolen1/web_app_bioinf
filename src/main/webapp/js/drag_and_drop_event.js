@@ -1,5 +1,5 @@
 // select the item element by id, that's what the # is for
-const items = document.querySelectorAll(".item");
+const items = document.querySelectorAll(".list-group-item");
 
 // Add dragging event through the function dragstart
 items.forEach(item => {
@@ -7,6 +7,7 @@ items.forEach(item => {
 })
 
 function dragStart(e) {
+    draggable = e.target;
     e.dataTransfer.setData("text/plain", e.target.id);
     setTimeout(() => {
         e.target.classList.add("d-none");

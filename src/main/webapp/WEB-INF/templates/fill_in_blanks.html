@@ -20,7 +20,7 @@
             <p>The scientist has found several pieces of DNA to find out whether this gene is the right one,
             we'll need to throw our little piece of DNA against a whole database with DNA sequences. Before we do that though,
         let's make sure the scientist's DNA sequences all equal to each other. The scientist has told us that the pieces of DNA are all
-        over a 1000 nucleotides long. Pfft, we don't want to type that out all the type. Let's create a variable, so we can store our
+        over a 1000 nucleotides long. Pft, we don't want to type that out all the type. Let's create a variable, so we can store our
         DNA sequences.
             </p>
             <p>A variable serves as a container for our item. Variables come in many different types, but this will be a simple string of characters.
@@ -58,15 +58,23 @@
                     <span class="input-group-text">in the </span>
                     <input type="text" aria-label="answer_name" class="form-control" placeholder="where we are pulling from " id="for_answer_two">
                 </div>
-                <div class="input group">
-                    <span class="input-group-text">if the gene is equal to</span>
-                    <input type="text" aria-label="answer_name" class="form-control" placeholder="What are we comparing the gene in the database with" >
-                </div>
                 <button class="btn btn-light" type="submit" id="for_loop_made">I've filled in the for-loop!</button>
             </div>
         </div>
         <div class="row d-none" id="third_step">
-            <p>Look at that, we found our gene! Our last job will be to translate our gene to the proper amino acid chain.</p>
+            <p>We're moving through our database, but now we need to stop when we find the gene we need. In other words, if we find the
+            gene that is equal to the gene we put into string_1 then stop and give us back the gene that we found. An if-statement like the one above. Let's create
+            our if-statement</p>
+            <div class="input group">
+                <span class="input-group-text">if the gene is equal to</span>
+                <input type="text" aria-label="answer_name" class="form-control" id="if_answer" placeholder="What are we comparing the gene in the database with" >
+                <span class="input-group-text">then stop the loop and return the gene</span>
+            </div>
+            <button class="btn btn-light" type="submit" id="if_made">I've filled in the if statement!</button>
+        </div>
+        <div class="row d-none" id="fourth_step">
+            <p>We did it, we have our gene at the ready now, and we are ready to move on to the next step. We're going to be translating this DNA into
+            mRNA.</p>
         </div>
 </div>
 

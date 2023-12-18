@@ -3,7 +3,8 @@ let answer = document.getElementById("answer_variable");
 let for_loop_answer = document.getElementById("for_loop_made");
 let answer_for_1 = document.getElementById("for_answer_one");
 let answer_for_2 = document.getElementById("for_answer_two");
-
+let answer_for_3 = document.getElementById("if_answer");
+let if_button = document.getElementById("if_made");
 answered.addEventListener("click", function(event) {
     event.preventDefault();
     if (answer.value === "string_1") {
@@ -19,3 +20,11 @@ for_loop_answer.addEventListener("click", function (event){
         step_three.classList.remove("d-none");
     }
 });
+
+if_button.addEventListener("click", function (event){
+    event.preventDefault();
+    if (answer_for_3.value === "string_1"){
+        let step_four = document.getElementById("fourth_step");
+        step_four.classList.remove("d-none");
+    }
+})
