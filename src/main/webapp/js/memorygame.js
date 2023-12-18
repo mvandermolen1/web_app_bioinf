@@ -50,7 +50,7 @@ function startGame() {
 
             let card = document.createElement("img");
             card.id = r.toString() + "-" + c.toString();
-            card.src = "/images/" + cardImg + ".jpg";
+            card.src = "/images/" + cardImg + ".png";
             console.log(card.src);
             card.classList.add("card");
             card.addEventListener("click", selectCard);
@@ -68,7 +68,7 @@ function hideCards() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let card = document.getElementById(r.toString() + "-" + c.toString());
-            card.src = "back.jpg";
+            card.src = "/images/back.jpg";
         }
     }
 }
@@ -83,7 +83,7 @@ function selectCard() {
             let r = parseInt(coords[0]);
             let c = parseInt(coords[1]);
 
-            card1Selected.src = board[r][c] + ".jpg";
+            card1Selected.src = board[r][c] + ".png";
         }
         else if (!card2Selected && this != card1Selected) {
             card2Selected = this;
@@ -92,7 +92,7 @@ function selectCard() {
             let r = parseInt(coords[0]);
             let c = parseInt(coords[1]);
 
-            card2Selected.src = board[r][c] + ".jpg";
+            card2Selected.src = board[r][c] + ".png";
             setTimeout(update, 1000);
         }
     }
@@ -102,8 +102,8 @@ function selectCard() {
 function update() {
     //if cards aren't the same, flip both back
     if (card1Selected.src != card2Selected.src) {
-        card1Selected.src = "back.jpg";
-        card2Selected.src = "back.jpg";
+        card1Selected.src = "/images/back.jpg";
+        card2Selected.src = "/images/back.jpg";
         errors += 1;
         document.getElementById("errors").innerText = errors;
     }
