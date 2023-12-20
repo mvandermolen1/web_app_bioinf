@@ -21,6 +21,7 @@ function showTextNode(textNodeIndex) {
         if (showOption(option)) {
             const button = document.createElement('button')
             button.innerText = option.text
+            button.classList.add('btn btn-outline-light')
             button.addEventListener('click', () => selectOption(option))
             optionButtonsElement.appendChild(button)
         }

@@ -1,5 +1,6 @@
 package nl.bioinf.servlets;
 import nl.bioinf.config.WebConfig;
+import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,7 +22,14 @@ public class DragDropServlet extends HttpServlet {
         process(request, response);
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        process(request, response);
+        WebConfig.configureResponse(response);
+        WebContext ctx = new WebContext(
+                request,
+                response,
+                request.getServletContext(),
+                request.getLocale());
+        WebConfig.createTemplateEngine(getServletContext()).
+                process("drag_and_drop_event", ctx, response.getWriter());
     }
     public void process(HttpServletRequest request, HttpServletResponse response)
             throws IOException {

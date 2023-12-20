@@ -20,10 +20,10 @@ const boxes = document.querySelectorAll(".answer");
 
 // for each drop target, handle the events
 boxes.forEach(box => {
-    box.addEventListener('dragenter', dragEnter)
-    box.addEventListener('dragover', dragOver);
-    box.addEventListener('dragleave', dragLeave);
-    box.addEventListener('drop', drop);
+    box.addEventListener("dragenter", dragEnter)
+    box.addEventListener("dragover", dragOver);
+    box.addEventListener("dragleave", dragLeave);
+    box.addEventListener("drop", drop);
 });
 
 // Removes the hide when drag stops
@@ -34,19 +34,19 @@ document.addEventListener("dragend", function (event) {
 
 function dragEnter(e) {
     e.preventDefault();
-    e.target.classList.add('bg-light');
+    e.target.classList.add("bg-light");
 }
 
 
 function dragOver(e) {
     e.preventDefault();
-    e.target.classList.add('bg-light');
+    e.target.classList.add("bg-light");
 }
 
 
 
 function dragLeave(e) {
-    e.target.classList.remove('bg-light');
+    e.target.classList.remove("bg-light");
 }
 
 
@@ -58,8 +58,8 @@ function drop(e) {
 
     draggable.classList.remove('d-none');
     if(e.target.classList.contains("answer")){
-        e.target.classList.remove('bg-light');
-        draggable.classList.remove('d-none');
+        e.target.classList.remove("bg-light");
+        draggable.classList.remove("d-none");
         if(e.target.childElementCount !== 0){
             let childP = e.target.getElementsByTagName("li")[0];
             document.getElementById("all").appendChild(childP);
