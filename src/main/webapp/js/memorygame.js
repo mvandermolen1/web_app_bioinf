@@ -83,7 +83,7 @@ function selectCard() {
             let r = parseInt(coords[0]);
             let c = parseInt(coords[1]);
 
-            card1Selected.src = board[r][c] + ".png";
+            card1Selected.src = "/images/" + board[r][c] + ".png";
         }
         else if (!card2Selected && this != card1Selected) {
             card2Selected = this;
@@ -92,7 +92,7 @@ function selectCard() {
             let r = parseInt(coords[0]);
             let c = parseInt(coords[1]);
 
-            card2Selected.src = board[r][c] + ".png";
+            card2Selected.src = "/images/" + board[r][c] + ".png";
             setTimeout(update, 1000);
         }
     }
