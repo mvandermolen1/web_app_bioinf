@@ -1,6 +1,4 @@
 let draggable;
-let container = document.getElementById("dragdrop");
-let content = container.innerHTML;
 // select the item element by id, that's what the # is for
 const items = document.querySelectorAll(".list-group-item");
 
