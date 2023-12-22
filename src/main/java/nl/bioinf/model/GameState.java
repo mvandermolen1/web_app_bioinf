@@ -17,6 +17,8 @@ public class GameState {
         return errors;
     }
 
+    
+
     public void setErrors(int errors) {
         this.errors = errors;
     }
