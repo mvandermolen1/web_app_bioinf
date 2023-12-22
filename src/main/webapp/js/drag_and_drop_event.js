@@ -1,4 +1,6 @@
 let draggable;
+let container = document.getElementById("dragdrop");
+let content = container.innerHTML;
 // select the item element by id, that's what the # is for
 const items = document.querySelectorAll(".list-group-item");
 
@@ -86,3 +88,12 @@ document.getElementById("checkAnswer").addEventListener("click", function () {
     }
     result.append(score + "/" + answers.length);
 })
+
+function reset_game(){
+    let container = document.getElementById("dragdrop");
+    container.innerHTML= html;
+}
+let html;
+window.onload = function(){
+    html = document.getElementById("dragdrop").innerHTML;
+};
