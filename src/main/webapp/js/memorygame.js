@@ -93,9 +93,6 @@ function selectCard() {
             setTimeout(update, 1000);
         }
     }
-    if (userDecidesToQuit) {
-        quitGame(); // Call the quitGame function
-    }
 }
 
 function update() {
@@ -125,15 +122,12 @@ function checkStatus() {
         button.innerText = "stop"
         button.classList.add('btn')
         button.classList.add("btn-outline-light")
+        button.addEventListener("click", redirect)
         document.getElementById("stopButton").appendChild(button);
 
         // TODO: add eventlistener to button, redirect to textgame with error-score
     }
 }
-
-function quitGame() {
-    document.getElementById('quitButton').addEventListener('click', function () {
-    // Redirect to a specific node in textgame.js
-    return window.location.replace = '/textgame';
-    })
+function redirect(option){
+    return window.location.replace("/textgame?error=" + errors + "&id=" + 4);
 }
