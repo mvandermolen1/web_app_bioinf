@@ -109,6 +109,26 @@ function update() {
 
     card1Selected = null;
     card2Selected = null;
+    // if (!this.src.includes("back")){
+    //     console.log("we're there");
+    // }
+    checkStatus();
+}
+
+function checkStatus() {
+    let cards = Array.from(document.querySelectorAll(".card"));
+    if (cards.filter(card => card.src.includes("back")).length > 0)
+        console.log("not done!");
+    else {
+        console.log("done!");
+        const button = document.createElement('button')
+        button.innerText = "stop"
+        button.classList.add('btn')
+        button.classList.add("btn-outline-light")
+        document.getElementById("stopButton").appendChild(button);
+
+        // TODO: add eventlistener to button, redirect to textgame with error-score
+    }
 }
 
 function quitGame() {

@@ -33,7 +33,6 @@ public class WelcomeServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        ctx.setVariable("currentDate", new Date());
         WebConfig.createTemplateEngine(getServletContext()).
                 process("first_step", ctx, response.getWriter());
     }

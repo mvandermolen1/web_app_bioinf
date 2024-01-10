@@ -1,6 +1,8 @@
 let draggable;
 // select the item element by id, that's what the # is for
 const items = document.querySelectorAll(".list-group-item");
+const currentUrl = window.location.href;
+console.log(currentUrl);
 
 // Add dragging event through the function dragstart
 items.forEach(item => {
@@ -91,6 +93,7 @@ function reset_game(){
     let container = document.getElementById("dragdrop");
     container.innerHTML= html;
 }
+
 let html;
 window.onload = function(){
     html = document.getElementById("dragdrop").innerHTML;

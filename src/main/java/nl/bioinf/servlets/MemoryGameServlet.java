@@ -20,6 +20,7 @@ public class MemoryGameServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         process(request, response);
+
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         WebConfig.configureResponse(response);

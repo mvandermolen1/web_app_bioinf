@@ -17,8 +17,7 @@ public class CoverServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         final ServletContext servletContext = this.getServletContext();
-        WebConfig.createTemplateEngine(servletContext);
-        this.templateEngine = WebConfig.getTemplateEngine(getServletContext());
+        this.templateEngine = WebConfig.createTemplateEngine(servletContext);
     }
     private static final long serialVersionUID = 1L;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{

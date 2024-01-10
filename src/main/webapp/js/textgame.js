@@ -45,6 +45,9 @@ function selectOption(option) {
     if (nextTextNodeId <= 0) {
         return startGame()
     }
+    if (nextTextNodeId === 3){
+        window.location.href = "/memorygame.html";
+    }
     state = Object.assign(state, option.setState)
     showTextNode(nextTextNodeId)
 }
@@ -77,7 +80,7 @@ const textNodes = [
                 text: 'Trade the goo for a sword',
                 requiredState: (currentState) => currentState.blueGoo,
                 setState: { blueGoo: false, sword: true },
-                nextText: 3
+                nextText: 3,
             },
             {
                 text: 'Trade the goo for a shield',
