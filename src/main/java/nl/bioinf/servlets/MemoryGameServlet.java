@@ -22,7 +22,16 @@ public class MemoryGameServlet extends HttpServlet {
         process(request, response);
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        process(request, response);
+        WebConfig.configureResponse(response);
+        WebContext ctx = new WebContext(
+                request,
+                response,
+                request.getServletContext(),
+                request.getLocale());
+        System.out.println(request.getParameter("error"));
+        System.out.println(request.getParameter("id"));
+        WebConfig.createTemplateEngine(getServletContext()).
+                process("memorygame", ctx, response.getWriter());
     }
     public void process(HttpServletRequest request, HttpServletResponse response)
             throws IOException {

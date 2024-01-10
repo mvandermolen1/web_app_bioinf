@@ -23,7 +23,12 @@ function showTextNode(textNodeIndex) {
             button.innerText = option.text
             button.classList.add('btn')
             button.classList.add("btn-outline-light")
-            button.addEventListener('click', () => selectOption(option))
+            if (textNode.id === 2){
+                button.addEventListener('click', redirect(textNode))
+            }
+            else{
+                button.addEventListener('click', () => selectOption(option))
+            }
             optionButtonsElement.appendChild(button)
         }
     })
@@ -42,6 +47,10 @@ function selectOption(option) {
     }
     state = Object.assign(state, option.setState)
     showTextNode(nextTextNodeId)
+}
+
+function redirect(option){
+    return window.location.replace("/memorygame?error=0&id=" + option.id);
 }
 
 const textNodes = [

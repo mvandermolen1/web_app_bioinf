@@ -28,7 +28,6 @@ window.onload = function() {
 
 function shuffleCards() {
     cardSet = cardList.concat(cardList); //two of each card
-    console.log(cardSet);
     //shuffle
     for (let i = 0; i < cardSet.length; i++) {
         let j = Math.floor(Math.random() * cardSet.length); //get random index
@@ -37,7 +36,6 @@ function shuffleCards() {
         cardSet[i] = cardSet[j];
         cardSet[j] = temp;
     }
-    console.log(cardSet);
 }
 
 function startGame() {
@@ -60,7 +58,6 @@ function startGame() {
         board.push(row);
     }
 
-    console.log(board);
     setTimeout(hideCards, 1000);
 }
 
@@ -110,4 +107,23 @@ function update() {
 
     card1Selected = null;
     card2Selected = null;
+    if (!this.src.includes("back")){
+        console.log("we're there");
+        const button = document.createElement('button')
+        button.innerText = "stop"
+        button.classList.add('btn')
+        button.classList.add("btn-outline-light")
+        document.getElementById("stopButton").appendChild(button);
+    }
+}
+
+function stop(){
+    if (!this.src.includes("back")){
+        console.log("we're there");
+        const button = document.createElement('button')
+        button.innerText = "stop"
+        button.classList.add('btn')
+        button.classList.add("btn-outline-light")
+        document.getElementById("stopButton").appendChild(button);
+    }
 }
