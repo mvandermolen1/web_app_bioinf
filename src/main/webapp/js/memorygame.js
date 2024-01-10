@@ -93,7 +93,9 @@ function selectCard() {
             setTimeout(update, 1000);
         }
     }
-
+    if (userDecidesToQuit) {
+        quitGame(); // Call the quitGame function
+    }
 }
 
 function update() {
@@ -107,23 +109,11 @@ function update() {
 
     card1Selected = null;
     card2Selected = null;
-    if (!this.src.includes("back")){
-        console.log("we're there");
-        const button = document.createElement('button')
-        button.innerText = "stop"
-        button.classList.add('btn')
-        button.classList.add("btn-outline-light")
-        document.getElementById("stopButton").appendChild(button);
-    }
 }
 
-function stop(){
-    if (!this.src.includes("back")){
-        console.log("we're there");
-        const button = document.createElement('button')
-        button.innerText = "stop"
-        button.classList.add('btn')
-        button.classList.add("btn-outline-light")
-        document.getElementById("stopButton").appendChild(button);
-    }
+function quitGame() {
+    document.getElementById('quitButton').addEventListener('click', function () {
+    // Redirect to a specific node in textgame.js
+    return window.location.replace = '/textgame';
+    })
 }
