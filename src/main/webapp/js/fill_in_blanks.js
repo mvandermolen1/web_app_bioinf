@@ -36,9 +36,19 @@ if_button.addEventListener("click", function (event){
     if (answer_for_3.value === "string_1"){
         let step_four = document.getElementById("fourth_step");
         step_four.classList.remove("d-none");
+        const button = document.createElement('button')
+        button.innerText = "Back to the game"
+        button.classList.add('btn')
+        button.classList.add("btn-outline-light")
+        button.addEventListener("click", redirect)
+        document.getElementById("fourth_step").appendChild(button);
     }
     else{
         score++
         alert("Read the additional information carefully!");
     }
 });
+
+function redirect(option){
+    return window.location.replace("/textgame?error=" + score + "&id=" + 4);
+}
