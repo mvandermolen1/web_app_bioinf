@@ -22,7 +22,19 @@ public class TextGameServlet extends HttpServlet {
         process(request, response);
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        process(request, response);
+        //this step is optional; standard settings also suffice
+        WebConfig.configureResponse(response);
+        System.out.println(request.getParameter("error"));
+        System.out.println(request.getParameter("id"));
+        WebContext ctx = new WebContext(
+                request,
+                response,
+                request.getServletContext(),
+                request.getLocale());
+        int id = Integer.parseInt(request.getParameter("id"));
+        ctx.setVariable("id", id);
+        WebConfig.createTemplateEngine(getServletContext()).
+                process("textgame", ctx, response.getWriter());
     }
     public void process(HttpServletRequest request, HttpServletResponse response)
             throws IOException {

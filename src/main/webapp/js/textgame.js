@@ -4,8 +4,9 @@ const optionButtonsElement = document.getElementById('option-buttons')
 let state = {}
 
 function startGame() {
-    state = {}
-    showTextNode(1)
+    console.log('start id ' + input_state.id);
+    parseInt(input_state.id);
+    showTextNode(parseInt(input_state.id));
 }
 
 function showTextNode(textNodeIndex) {
@@ -43,10 +44,8 @@ function showOption(option) {
 function selectOption(option) {
     const nextTextNodeId = option.nextText
     if (nextTextNodeId <= 0) {
-        return startGame()
-    }
-    if (nextTextNodeId === 3){
-        window.location.href = "/memorygame.html";
+        state = {}
+        return showTextNode(1);
     }
     state = Object.assign(state, option.setState)
     showTextNode(nextTextNodeId)
