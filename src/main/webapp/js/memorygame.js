@@ -117,15 +117,12 @@ function checkStatus() {
     if (cards.filter(card => card.src.includes("back")).length > 0)
         console.log("not done!");
     else {
-        console.log("done!");
         const button = document.createElement('button')
-        button.innerText = "stop"
+        button.innerText = "Back to the game"
         button.classList.add('btn')
         button.classList.add("btn-outline-light")
         button.addEventListener("click", redirect)
         document.getElementById("stopButton").appendChild(button);
-
-        // TODO: add eventlistener to button, redirect to textgame with error-score
     }
 }
 function redirect(option){

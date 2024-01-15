@@ -1,8 +1,7 @@
 let draggable;
 // select the item element by id, that's what the # is for
 const items = document.querySelectorAll(".list-group-item");
-const currentUrl = window.location.href;
-console.log(currentUrl);
+var score = 0;
 
 // Add dragging event through the function dragstart
 items.forEach(item => {
@@ -59,42 +58,48 @@ function drop(e) {
     let draggable = document.getElementById(id);
 
     draggable.classList.remove('d-none');
-    if(e.target.classList.contains("answer")){
-        e.target.classList.remove("bg-light");
-        draggable.classList.remove("d-none");
-        if(e.target.childElementCount !== 0){
-            let childP = e.target.getElementsByTagName("li")[0];
-            document.getElementById("all").appendChild(childP);
-        }
-        e.target.appendChild(draggable);
-        draggable = null;
+    if (e.target.getAttribute("data-accept") === draggable.getAttribute("data-target")){
+            e.target.classList.remove("bg-light");
+            draggable.classList.remove("d-none");
+            draggable.classList.add("bg-success");
+            e.target.appendChild(draggable);
+
     }
+    else{
+        score++
+        e.target.classList.remove("bg-light");
+        let childP = e.target.getElementsByTagName("li")[0];
+        document.getElementById("all").appendChild(childP);
+    }
+    draggable = null;
 }
 
+// function to check answers where answers are the answers to the drag and drop game
 document.getElementById("checkAnswer").addEventListener("click", function () {
     let questions = document.getElementsByClassName("answer");
-    const answers = ["nucleotide", "is equal to", "T", "U", "is not equal to"];
-    let score = 0;
+    let valid = "";
     let result = document.getElementById("result");
     for (let i = 0; i < questions.length; i++) {
         const element = questions[i];
-        let childP = element.getElementsByTagName("li")[0];
-        if (childP.innerText=== answers[i]){
-            score++
+        if (element.childElementCount === 1){
+            valid = "You are done!"
         }
         else{
-            childP.classList.add("bg-danger")
+            valid = "You're not done yet!"
         }
     }
-    result.append(score + "/" + answers.length);
+    if (valid === "You are done!"){
+        const button = document.createElement('button')
+        button.innerText = "Back to the game"
+        button.classList.add('btn')
+        button.classList.add("btn-outline-light")
+        button.addEventListener("click", redirect)
+        document.getElementById("stopButton").appendChild(button);
+    }
+    result.append(valid);
 })
 
-function reset_game(){
-    let container = document.getElementById("dragdrop");
-    container.innerHTML= html;
+function redirect(option){
+    return window.location.replace("/textgame?error=" + score + "&id=" + 4);
 }
 
-let html;
-window.onload = function(){
-    html = document.getElementById("dragdrop").innerHTML;
-};

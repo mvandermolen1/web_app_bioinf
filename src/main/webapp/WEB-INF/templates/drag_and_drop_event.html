@@ -12,40 +12,40 @@
     <div class="row">
         <div class="col p-2">
             <ul class="options list-group border" id="all">
-                <li class="list-group-item"  draggable="true" id="one">T</li>
-                <li class="list-group-item"  draggable="true" id="two">is equal to</li>
-                <li class="list-group-item"  draggable="true" id="three">is not equal to</li>
-                <li class="list-group-item"  draggable="true" id="four">nucleotide</li>
-                <li class="list-group-item"  draggable="true" id="five">U</li>
+                <li class="list-group-item"  draggable="true" id="one" data-target="three">T</li>
+                <li class="list-group-item"  draggable="true" id="two" data-target="two">is equal to</li>
+                <li class="list-group-item"  draggable="true" id="three" data-target="five">is not equal to</li>
+                <li class="list-group-item"  draggable="true" id="four" data-target="one">nucleotide</li>
+                <li class="list-group-item"  draggable="true" id="five" data-target="four">U</li>
             </ul>
         </div>
         <div class="col p-2">
             <div class="d-flex flex-row mb-3 border">
                 <div class="p-2">For every</div>
-                <div class="answer p-2 border"></div>
+                <div class="answer p-2 border" data-accept="one"></div>
                 <div class="p-2">in the DNA sequence</div>
             </div>
             <div class="d-flex flex-row mb-4 border">
                 <div class="p-2 w-25">If the nucleotide</div>
-                <div class="answer p-2 border"> </div>
+                <div class="answer p-2 border" data-accept="two"> </div>
                 <div class="p-2">the nucleotide</div>
-                <div class="answer p-2 border"> </div>
+                <div class="answer p-2 border" data-accept="three"> </div>
             </div>
             <div class="d-flex flex-row mb-3 border">
                 <div class="p-2 w-50">Change the nucleotide 'T' to </div>
-                <div class="answer p-2 border"> </div>
+                <div class="answer p-2 border" data-accept="four"> </div>
             </div>
             <div class="d-flex flex-row mb-3 border">
                 <div class="p-2">Else</div>
-                <div class="answer p-2 border"> </div>
+                <div class="answer p-2 border" data-accept="five"> </div>
                 <div class="p-2">to the nucleotide 'T':</div>
             </div>
             <div class="d-flex flex-row mb-3 border">
                 <div class="p-2 w-50">Leave this nucleotide as it is</div>
             </div>
             <button class="btn btn-secondary" id="checkAnswer" type="button">Check answers</button>
-            <button type="button" class="btn btn-secondary" value="Reset" onclick="reset_game()">Reset game</button>
             <p id="result"></p>
+            <div id="stopButton"></div>
         </div>
     </div>
 </div>
