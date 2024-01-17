@@ -4,7 +4,6 @@ const optionButtonsElement = document.getElementById('option-buttons')
 let state = {}
 
 function startGame() {
-    console.log('start id ' + input_state.id);
     parseInt(input_state.id);
     showTextNode(parseInt(input_state.id));
 }
@@ -24,8 +23,8 @@ function showTextNode(textNodeIndex) {
             button.innerText = option.text
             button.classList.add('btn')
             button.classList.add("btn-outline-light")
-            if (textNode.id === 2){
-                button.addEventListener('click', redirect(textNode))
+            if (option.text === "Find the OR6A2 gene"){
+                button.addEventListener('click', redirect)
             }
             else{
                 button.addEventListener('click', () => selectOption(option))
@@ -52,160 +51,146 @@ function selectOption(option) {
 }
 
 function redirect(option){
-    return window.location.replace("/memorygame?error=0&id=" + option.id);
+    return window.location.replace("/fill?error=0&id=" + 5);
 }
 
 const textNodes = [
     {
         id: 1,
-        text: 'You wake up in a strange place and you see a jar of blue goo near you.',
+        text: "You wake up in a strange place. The scientist that hired you is looming over your body. He doesn't know you've regained your senses yet. " +
+            "You wonder what to do.",
         options: [
             {
-                text: 'Take the goo',
+                text: 'Spook the scientist',
                 setState: { blueGoo: true },
                 nextText: 2
             },
             {
-                text: 'Leave the goo',
-                nextText: 2
+                text: 'Leave the man alone',
+                nextText: 3
             }
         ]
     },
-    {
-        id: 2,
-        text: 'You venture forth in search of answers to where you are when you come across a merchant.',
+    { id: 2,
+        text: "The scientist frowns, he clearly did not appreciate your jest.",
         options: [
-            {
-                text: 'Trade the goo for a sword',
-                requiredState: (currentState) => currentState.blueGoo,
-                setState: { blueGoo: false, sword: true },
-                nextText: 3,
-            },
-            {
-                text: 'Trade the goo for a shield',
-                requiredState: (currentState) => currentState.blueGoo,
-                setState: { blueGoo: false, shield: true },
+            {	text: "Punch him in the shoulder, all just a joke.",
                 nextText: 3
             },
-            {
-                text: 'Ignore the merchant',
+            {	text: "Tell him that's what he gets for looming over you",
                 nextText: 3
             }
         ]
     },
     {
         id: 3,
-        text: 'After leaving the merchant you start to feel tired and stumble upon a small town next to a dangerous looking castle.',
+        text: "Eventually, the scientist notes that you are back to your senses. " +
+            "He tells you that you bumped your head against the corner of a cabinet, " +
+            "but thinks you will be fine though he is worried about your memory. " +
+            "He reminds you that you were busy with his research and that you should get back to it.",
         options: [
             {
-                text: 'Explore the castle',
+                text: "Move back to your desk",
                 nextText: 4
             },
             {
-                text: 'Find a room to sleep at in the town',
+                text: "Sneakily see if you can find out more about this research.",
                 nextText: 5
-            },
-            {
-                text: 'Find some hay in a stable to sleep in',
-                nextText: 6
             }
         ]
     },
     {
         id: 4,
-        text: 'You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.',
+        text: "At your desk, you get back to work. Luckily, you dutifully noted down what you were doing. You were trying to get a gene from a database. Right...",
         options: [
             {
-                text: 'Restart',
-                nextText: -1
+                text: "Find the OR6A2 gene"
             }
         ]
     },
     {
         id: 5,
-        text: 'Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.',
+        text: "You sneak around behind the scientist's back and come across several papers. " +
+            "Reading through them, you see that the scientist is trying to look for a gene called OR6A2. " +
+            "You recall that this is the gene that is responsible for making cilantro taste differently based on what " +
+            "version of the gene you have. What could the scientist want with this? Before you can continue reading, the " +
+            "scientist scolds you and sends you back to work",
         options: [
             {
-                text: 'Restart',
-                nextText: -1
+                text: "Move back to your desk",
+                nextText: 4
             }
         ]
     },
     {
         id: 6,
-        text: 'You wake up well rested and full of energy ready to explore the nearby castle.',
+        text: "You've done the work well! The scientist seems thrilled by this. " +
+            "One step closer to destroying cila-,..ehm-,..I mean, one step closer to great scientific discoveries. " +
+            "The scientist urges you on to continue working!",
         options: [
             {
-                text: 'Explore the castle',
-                nextText: 7
+                text: "Continue working",
+                nextText: 8
+            },
+            {
+                text: "Say you'll take a break, and look around the room",
+                nextText: 9
             }
         ]
     },
     {
         id: 7,
-        text: 'While exploring the castle you come across a horrible monster in your path.',
+        text: "You've done the work but the scientist looks at you weirdly. You ask yourself are you sure you know what you are doing?",
         options: [
             {
-                text: 'Try to run',
-                nextText: 8
+                text: "You totally know what you are doing",
+                nextText: -1
             },
             {
-                text: 'Attack it with your sword',
-                requiredState: (currentState) => currentState.sword,
-                nextText: 9
+                text:"Lie: You totally know what you are doing",
+                nextText: -1
             },
             {
-                text: 'Hide behind your shield',
-                requiredState: (currentState) => currentState.shield,
-                nextText: 10
-            },
-            {
-                text: 'Throw the blue goo at it',
-                requiredState: (currentState) => currentState.blueGoo,
-                nextText: 11
+                text: "You have no idea what you are doing",
+                nextText: -1
             }
         ]
     },
     {
         id: 8,
-        text: 'Your attempts to run are in vain and the monster easily catches.',
+        text: "The scientist tells you that the gene you pulled from the database is DNA. " +
+            "The blueprint for everything in your body. It is nice, but he needs RNA. " +
+            "For science. He explains that to go from DNA to RNA, you have to change a 'nucleotide'. " +
+            "You nod along, you knew what that meant. Right?",
         options: [
             {
-                text: 'Restart',
-                nextText: -1
+                text: "Turn the DNA into RNA"
             }
         ]
     },
     {
         id: 9,
-        text: 'You foolishly thought this monster could be slain with a single sword.',
+        text: "You dart away from your desk to take your break, or rather to sneak around. " +
+            "After some prying, you find personal letters from the scientist to someone about the" +
+            " OR6A2 gene, the gene responsible for making cilantro taste funny. You read through " +
+            "this rather personal letter. His tone in the letter indicated he was rather displeased " +
+            "with cilantro, he didn't like the taste. If he couldn't enjoy it no one could. " +
+            "Wow, that's rather bad. Maybe you shouldn't work with this man, but then he'd just replace you, right? " +
+            "Maybe you should, you have your reasons. Maybe you should sabotage this man's plans?",
         options: [
             {
-                text: 'Restart',
-                nextText: -1
-            }
+                text: "You quit on the spot.",
+                nextStep: -1
+            },
+            {
+                text: "You continue your work",
+                nextStep: 8
+            },
         ]
     },
-    {
-        id: 10,
-        text: 'The monster laughed as you hid behind your shield and ate you.',
-        options: [
-            {
-                text: 'Restart',
-                nextText: -1
-            }
-        ]
-    },
-    {
-        id: 11,
-        text: 'You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.',
-        options: [
-            {
-                text: 'Congratulations. Play Again.',
-                nextText: -1
-            }
-        ]
-    }
+
 ]
+
+
 
 startGame()

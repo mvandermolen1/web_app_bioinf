@@ -99,7 +99,7 @@ document.getElementById("checkAnswer").addEventListener("click", function () {
     result.append(valid);
 })
 
-function redirect(option){
+function redirect(){
     return window.location.replace("/textgame?error=" + score + "&id=" + 4);
 }
 

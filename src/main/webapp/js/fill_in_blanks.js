@@ -49,6 +49,11 @@ if_button.addEventListener("click", function (event){
     }
 });
 
-function redirect(option){
-    return window.location.replace("/textgame?error=" + score + "&id=" + 4);
+function redirect(){
+    if (score > 5){
+        return window.location.replace("/textgame?error=" + score + "&id=" + 7);
+    }
+    else{
+        return window.location.replace("/textgame?error=" + score + "&id=" + 6);
+    }
 }
