@@ -96,7 +96,10 @@ document.getElementById("checkAnswer").addEventListener("click", function () {
             button.addEventListener("click", () => redirect(10))
         }
         else if (score < 5 && window.location.pathname === "/dragProtein"){
-            button.addEventListener("click", () => redirect(-1))
+            button.addEventListener("click", () => redirect(14))
+        }
+        else if (score > 7 && window.location.pathname ==="/dragProtein"){
+            button.addEventListener("click", () => redirect(15))
         }
         else{
             button.addEventListener("click", () => redirect(11))

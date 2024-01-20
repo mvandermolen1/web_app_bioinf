@@ -32,7 +32,9 @@ public class TextGameServlet extends HttpServlet {
                 request.getServletContext(),
                 request.getLocale());
         int id = Integer.parseInt(request.getParameter("id"));
+        int error = Integer.parseInt(request.getParameter("error"));
         ctx.setVariable("id", id);
+        ctx.setVariable("error", error);
         templateEngine.process("textgame", ctx, response.getWriter());
     }
     public void process(HttpServletRequest request, HttpServletResponse response)

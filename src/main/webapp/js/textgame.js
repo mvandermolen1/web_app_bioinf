@@ -24,10 +24,16 @@ function showTextNode(textNodeIndex) {
             button.classList.add('btn')
             button.classList.add("btn-outline-light")
             if (option.text === "Find the OR6A2 gene"){
-                button.addEventListener('click', () => redirect("/fill?error=0&id=" + textNode.id))
+                button.addEventListener('click', () => redirect("/fill?error="+ input_state.error +"&id="  + input_state.id))
             }
             else if (option.text === "Turn the DNA into RNA"){
-                button.addEventListener('click', () => redirect("/drag?error=0&id=" + textNode.id))
+                button.addEventListener('click', () => redirect("/drag?error=" + input_state.error +"&id=" + input_state.id))
+            }
+            else if (option.text === "You are ready!"){
+                button.addEventListener('click', () => redirect("/dragProtein?error=" + input_state.error +"&id=" + input_state.id))
+            }
+            else if (option.text === "Dream world, here we come!"){
+                button.addEventListener('click', () => redirect("/memorygame?error=" + input_state.error +"&id=" + input_state.id))
             }
             else{
                 button.addEventListener('click', () => selectOption(option))
@@ -143,7 +149,8 @@ const textNodes = [
     },
     {
         id: 7,
-        text: "You've done the work but the scientist looks at you weirdly. You ask yourself are you sure you know what you are doing?",
+        text: "You've done the work but the scientist looks at you weirdly. " +
+            "You ask yourself are you sure you know what you are doing?",
         options: [
             {
                 text: "You totally know what you are doing",
@@ -183,11 +190,11 @@ const textNodes = [
         options: [
             {
                 text: "You quit on the spot.",
-                nextStep: -1
+                nextText: -1
             },
             {
                 text: "You continue your work",
-                nextStep: 8
+                nextText: 8
             },
         ]
     },
@@ -199,27 +206,120 @@ const textNodes = [
             "are like the workers in your body. They are responsible for keeping all the processes going.",
         options: [
             {
-                text: "Turn RNA into Protein",
+                text: "Continue working",
+                nextText: 13
             },
             {
-              text: "Say you'll take a break, and look around the room",
-              nextStep: 12
+                text: "Say you'll take a break, and look around the room",
+                nextText: 12
             },
         ]
     },
     {
         id: 11,
-        text: "tbc",
+        text: "Well, that took some time but failure means you're learning. As long as you didn't give up! The scientist" +
+            "seems more skeptical and wonders if you're sure you know what you're doing.",
         options: [
             {
-                text: "tbc",
-                nextStep: -1
+                text: "Of course you are are! Trust the process!",
+                nextText: 10
             },
             {
-                text: "tbc",
-                nextStep: -1
+                text: "Well, maybe you're not so sure. Perhaps you want a retry?",
+                nextText: 8
             },
         ]
+    },
+    {
+        id: 12,
+        text: "Avoiding the scientist, you start to see what this research is about. The herb cilantro is the target, it seems." +
+            "Using modifications to the protein, the scientist wants to make it taste bad for all people. Just like how it tastes bad for him." +
+            "Maybe not for the first time you wonder, should you be doing this?",
+        options: [
+            {
+                text: "You quit on the spot.",
+                nextText: -1
+            },
+            {
+                text: "You continue your work",
+                nextText: 13
+            },
+        ]
+    },
+    {
+        id: 13,
+        text: "You adjust yourself and get ready for the final stretch. Turning RNA into protein. Okay, that doesn't sound too bad." +
+            "The scientist tells you all about proteins. Maybe a bit too much. The only thing you recall is that they are made by three letters" +
+            "of RNA, a codon. This codon can be translated into an amino acid, the building blocks of proteins, using a codon table." +
+            "Are you ready to do it?",
+        options: [
+            {
+                text: "You are ready!",
+                nextText: 14
+            },
+        ]
+    },
+    {
+        id: 14,
+        text: "Excellent work! That was it! The final step! The scientist doesn't even seem all that happy. He" +
+            "is already busy with the next step.",
+        options: [
+            {
+                text: "You shrug, and get ready to leave work.",
+                nextText: 16
+            },
+            {
+                text: "Maybe you won't leave just yet.",
+                nextText: 16
+            }
+        ]
+    },
+    {
+        id: 15,
+        text: "That certainly could've gone better, but you managed. Didn't the scientist say this was the final" +
+            "step anyways? Surely you won't quit now.",
+        options: [
+            {
+                text: "You continue onwards.",
+                nextText: 16
+            },
+        ]
+    },
+    {
+        id: 16,
+        text: "The scientist suddenly perks up. Damn, and you thought you were done. He moves over to you, grabbing you by the collar" +
+            "and dragging you back to computer. Something is still going wrong. The adjustment he made in the protein has caused the immune system" +
+            "to respond. That's not supposed to happen. While the scientist rants and raves about this, you drift off to a dream. What do you" +
+            "remember of the immune system.... ",
+        options: [
+            {
+                text: "Dream world, here we come!",
+            }
+        ],
+    },
+    {
+        id: 17,
+        text: "",
+        options: [
+            {
+                text: "Dream world, here we come!",
+                nextText: ""
+            },
+            {
+                text: "",
+                nextText: ""
+            }
+        ],
+    },
+    {
+        id: 18,
+        text: "",
+        options: [
+            {
+                text: "Dream world, here we come!",
+                nextText: ""
+            }
+        ],
     }
 ]
 

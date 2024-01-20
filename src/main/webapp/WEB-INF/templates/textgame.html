@@ -29,10 +29,11 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     var input_state = {};
-    input_state.id = /*[[${id}]]*/ 10000;
+    input_state.id = /*[[${id}]]*/ -1;
     input_state.error = /*[[${error}]]*/ 10;
 
     console.log(input_state.id);
+    console.log(input_state.error);
     /*]]>*/
 </script>
 <script th:src="@{/js/textgame.js}" src="../../js/textgame.js"></script>
