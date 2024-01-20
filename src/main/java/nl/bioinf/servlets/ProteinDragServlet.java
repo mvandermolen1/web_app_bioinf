@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "DragDropServlet", urlPatterns = "/drag", loadOnStartup = 1)
-public class DragDropServlet extends HttpServlet {
+@WebServlet(name = "ProteinDragServlet", urlPatterns = "/dragProtein", loadOnStartup = 1)
+public class ProteinDragServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         final ServletContext servletContext = this.getServletContext();
@@ -35,6 +35,6 @@ public class DragDropServlet extends HttpServlet {
                 request.getServletContext(),
                 request.getLocale());
         WebConfig.createTemplateEngine(getServletContext()).
-                process("drag_and_drop_event", ctx, response.getWriter());
+                process("protein_drag_and_drop", ctx, response.getWriter());
     }
 }

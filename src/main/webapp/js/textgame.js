@@ -24,7 +24,10 @@ function showTextNode(textNodeIndex) {
             button.classList.add('btn')
             button.classList.add("btn-outline-light")
             if (option.text === "Find the OR6A2 gene"){
-                button.addEventListener('click', redirect)
+                button.addEventListener('click', () => redirect("/fill?error=0&id=" + textNode.id))
+            }
+            else if (option.text === "Turn the DNA into RNA"){
+                button.addEventListener('click', () => redirect("/drag?error=0&id=" + textNode.id))
             }
             else{
                 button.addEventListener('click', () => selectOption(option))
@@ -50,8 +53,8 @@ function selectOption(option) {
     showTextNode(nextTextNodeId)
 }
 
-function redirect(option){
-    return window.location.replace("/fill?error=0&id=" + 5);
+function redirect(url){
+    return window.location.replace(url);
 }
 
 const textNodes = [
@@ -144,11 +147,11 @@ const textNodes = [
         options: [
             {
                 text: "You totally know what you are doing",
-                nextText: -1
+                nextText: 8
             },
             {
                 text:"Lie: You totally know what you are doing",
-                nextText: -1
+                nextText: 8
             },
             {
                 text: "You have no idea what you are doing",
@@ -158,9 +161,9 @@ const textNodes = [
     },
     {
         id: 8,
-        text: "The scientist tells you that the gene you pulled from the database is DNA. " +
-            "The blueprint for everything in your body. It is nice, but he needs RNA. " +
-            "For science. He explains that to go from DNA to RNA, you have to change a 'nucleotide'. " +
+        text: "Returning to your work, the scientist tells you that the gene you pulled from the database is DNA " +
+            ", the blueprint for everything in your body. It is nice, but he needs RNA, the code that gets translated to protein. " +
+            "So to get the protein, he needs the RNA code. He explains that to go from DNA to RNA, you have to change one of the building blocks of DNA to another. " +
             "You nod along, you knew what that meant. Right?",
         options: [
             {
@@ -188,7 +191,36 @@ const textNodes = [
             },
         ]
     },
-
+    {
+        id: 10,
+        text: "Success! You've turned the string of DNA into RNA! The scientist laughs madly, the end is approaching" +
+            "That is, the end of the project of course. Not the end of the world. That'd be mad. Just a few more steps to go!" +
+            "For the next trick, you'll need to go one step further. We're turning the RNA into a proper protein! A protein" +
+            "are like the workers in your body. They are responsible for keeping all the processes going.",
+        options: [
+            {
+                text: "Turn RNA into Protein",
+            },
+            {
+              text: "Say you'll take a break, and look around the room",
+              nextStep: 12
+            },
+        ]
+    },
+    {
+        id: 11,
+        text: "tbc",
+        options: [
+            {
+                text: "tbc",
+                nextStep: -1
+            },
+            {
+                text: "tbc",
+                nextStep: -1
+            },
+        ]
+    }
 ]
 
 
