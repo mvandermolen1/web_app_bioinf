@@ -1,5 +1,6 @@
 package nl.bioinf.servlets;
 import nl.bioinf.config.WebConfig;
+import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,13 +12,12 @@ import java.io.IOException;
 
 @WebServlet(name = "TextGameServlet", urlPatterns = "/textgame", loadOnStartup = 1)
 public class TextGameServlet extends HttpServlet {
+    private TemplateEngine templateEngine;
+
     @Override
     public void init() throws ServletException {
-        System.out.println("Initializing Thymeleaf template engine");
-        final ServletContext servletContext = this.getServletContext();
-        WebConfig.createTemplateEngine(servletContext);
+        this.templateEngine = WebConfig.getTemplateEngine();
     }
-    private static final long serialVersionUID = 1L;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         process(request, response);
     }
@@ -33,8 +33,7 @@ public class TextGameServlet extends HttpServlet {
                 request.getLocale());
         int id = Integer.parseInt(request.getParameter("id"));
         ctx.setVariable("id", id);
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("textgame", ctx, response.getWriter());
+        templateEngine.process("textgame", ctx, response.getWriter());
     }
     public void process(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -45,7 +44,6 @@ public class TextGameServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("textgame", ctx, response.getWriter());
+        templateEngine.process("textgame", ctx, response.getWriter());
     }
 }

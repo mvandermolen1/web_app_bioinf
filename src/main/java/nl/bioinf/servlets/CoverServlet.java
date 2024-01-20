@@ -16,10 +16,8 @@ public class CoverServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        final ServletContext servletContext = this.getServletContext();
-        this.templateEngine = WebConfig.createTemplateEngine(servletContext);
+        this.templateEngine = WebConfig.getTemplateEngine();
     }
-    private static final long serialVersionUID = 1L;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         process(request, response);
     }
@@ -35,7 +33,6 @@ public class CoverServlet extends HttpServlet {
             throws IOException {
         //this step is optional; standard settings also suffice
         WebConfig.configureResponse(response);
-        String username = request.getParameter("username");
         WebContext ctx = new WebContext(
                 request,
                 response,

@@ -13,12 +13,15 @@ import java.io.IOException;
 
 @WebServlet(name = "DragDropServlet", urlPatterns = "/drag", loadOnStartup = 1)
 public class DragDropServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private TemplateEngine templateEngine;
+
     @Override
     public void init() throws ServletException {
-        final ServletContext servletContext = this.getServletContext();
-        WebConfig.createTemplateEngine(servletContext);
+        this.templateEngine = WebConfig.getTemplateEngine();
     }
-    private static final long serialVersionUID = 1L;
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         process(request, response);
     }
@@ -34,7 +37,6 @@ public class DragDropServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("drag_and_drop_event", ctx, response.getWriter());
+        templateEngine.process("drag_and_drop_event", ctx, response.getWriter());
     }
 }
