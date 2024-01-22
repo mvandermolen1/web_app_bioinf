@@ -1,5 +1,5 @@
 # Hanzehogeschool Groningen: Bioinformatics Project Year 3, Period 10
-Authors: Isabella Hoftede and Mergriet van der Molen 
+Authors: Isabella Hofstede and Margriet van der Molen 
 
 ## Building a Web-Based Text RPG for Prospective Students
 
@@ -41,9 +41,8 @@ git clone https://github.com/your-username/bioinformatics-project.git
 3. Build and run the project using Gradle. 
 4. In IntelliJ a project with Gradle structure should be created from the repository directory.
 
-
 # Usage
-Access the application through a web browser, by using Apache Tomcat. Refer to the Gitbook provided by Michiel Nobak in the "useful links" section. 
+Access the application through a web browser, by using Apache Tomcat (v9.0.85). Refer to the Gitbook provided by Michiel Nobak in the "useful links" section. 
 
 # Useful links
 https://michielnoback.github.io/java_book/05_web/first_project.html
