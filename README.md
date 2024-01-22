@@ -37,11 +37,16 @@ To run the project locally, follow these steps:
 ```bash
 git clone https://github.com/your-username/bioinformatics-project.git
 ```
-2. Open the project in your preferred IDE or text editor.
-3. Build and run the project using Gradle.
+2. Open the project in your preferred IDE or text editor. (Recommended to use JetBrains IntelliJ IDEA with Java SDK 17.)
+3. Build and run the project using Gradle. 
+4. In IntelliJ a project with Gradle structure should be created from the repository directory.
+
 
 # Usage
-Access the application through a web browser, Apache Tomcat is .
+Access the application through a web browser, by using Apache Tomcat. Refer to the Gitbook provided by Michiel Nobak in the "useful links" section. 
+
+# Useful links
+https://michielnoback.github.io/java_book/05_web/first_project.html
 
 # Contributing
 If you wish to contribute to the project, please follow these guidelines:
