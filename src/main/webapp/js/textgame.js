@@ -1,17 +1,16 @@
-const textElement = document.getElementById('text')
-const optionButtonsElement = document.getElementById('option-buttons')
+const textElement = document.getElementById('text');
+const optionButtonsElement = document.getElementById('option-buttons');
 
-let state = {}
+let state = {};
 
 function startGame() {
-    parseInt(input_state.id);
     showTextNode(parseInt(input_state.id));
 }
 
 function showTextNode(textNodeIndex) {
     //takes text node for each point in array to show current textnode
-    const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
-    textElement.innerText = textNode.text
+    const textNode = textNodes.find(textNode => textNode.id === textNodeIndex);
+    textElement.innerText = textNode.text;
     //removes options first initialized in the html file
     while (optionButtonsElement.firstChild) {
         optionButtonsElement.removeChild(optionButtonsElement.firstChild)
@@ -51,7 +50,7 @@ function showOption(option) {
 //checks current state and overwrite the old state
 function selectOption(option) {
     const nextTextNodeId = option.nextText
-    if (nextTextNodeId <= 0) {
+    if (nextTextNodeId <= -2) {
         state = {}
         return showTextNode(1);
     }
@@ -71,7 +70,6 @@ const textNodes = [
         options: [
             {
                 text: 'Spook the scientist',
-                setState: { blueGoo: true },
                 nextText: 2
             },
             {
@@ -299,27 +297,175 @@ const textNodes = [
     },
     {
         id: 17,
-        text: "",
+        text: "You snap back to reality. That was quite the dream you had. The scientist has stopped raving and looks at you." +
+            "Suddenly, a spark of genius lights up in you. You have a solution in your mind to the man's problem. Do you tell him?",
         options: [
             {
-                text: "Dream world, here we come!",
-                nextText: ""
+                text: "Of course, you do!",
+                nextText: 19
             },
             {
-                text: "",
-                nextText: ""
+                text: "You don't, you have your reasons",
+                nextText: 20
             }
         ],
     },
     {
         id: 18,
-        text: "",
+        text: "You wake up and feel groggy, almost sick. That dream didn't go very well. The scientist quirks an eyebrow," +
+            "he has finally stopped his raving. Even after your trip in your dream world, you can not recall a solution to the scientist's" +
+            "problem.",
         options: [
             {
-                text: "Dream world, here we come!",
-                nextText: ""
+                text: "Bluff your way into a solution",
+                nextText: 20
+            },
+            {
+                text: "Just tell him you don't have a solution",
+                nextText: 20
             }
         ],
+    },
+    {
+        id: 19,
+        text: "The scientist smiles, nodding in approval to your solution. He says he will test it and allows you a break." +
+            "You'll have to return tomorrow.",
+        options: [
+            {
+                text: "Of course you will return tomorrow",
+                setState: {Total: input_state.total_error},
+                nextText: 21
+            },
+            {
+                text: "Never return",
+                nextText: -1
+            }
+        ],
+    },
+    {
+        id: 20,
+        text: "The scientist scoffs, waving you away. Clearly, he isn't very impressed by you. He tells you that" +
+            "he'll solve it while you can take a break and return tomorrow.",
+        options: [
+            {
+                text: "You will not return tomorrow",
+                nextText: -1
+            },
+            {
+                text: "Well, see you tomorrow then!",
+                setState: {Total: input_state.total_error},
+                nextText: 21
+            }
+        ],
+    },
+    {
+        id: 21,
+        text: "You return to your work. The scientist appears to be waiting for you with the final product. What you have gone through" +
+            "all this trouble for. He tells you that he has successfully found a way to edit the OR6A2 gene so that nobody will ever" +
+            "enjoy the taste of cilantro again. The only thing left to do is put his plan into action...",
+        options: [
+            {
+                text: "Ask him if you can look at the final result one last time...",
+                requiredState:(currentState) => currentState.Total < 20,
+                nextText: 22
+            },
+            {
+                text: "No, he won't! Fight the scientist! This plan can not succeed!",
+                requiredState:(currentState) => currentState.Total > 20,
+                nextText: 23
+            },
+            {
+                text: "Allow him to go on ahead. This isn't your fight.",
+                requiredState:(currentState) => currentState.Total > 20,
+                nextText: 24
+            },
+        ],
+    },
+    {
+        id: 22,
+        text: "Because you've done so well, the scientist allows you to take a look at the final results one more time.",
+        options: [
+            {
+                text: "While the scientist is gloating, sabotage the results.",
+                nextText: 25
+            },
+            {
+                text: "Leave the results as is. You never liked cilantro either.",
+                nextText: 26
+            }
+        ],
+    },
+    {
+        id: 23,
+        text: "You try to fight the scientist but he's a surprisingly skilled fighter. After a struggle, you are" +
+            "knocked on the ground. End of the line...or is it. While you are knocked out, the scientist tries to put his plans" +
+            "into action but due the mistakes you've made...the gene fails to work. " +
+            "Maybe making mistakes along the way isn't so bad after all.",
+        options: [
+            {
+                text: "The world can be at ease. Cilantro is saved.",
+                nextText: 0
+            },
+        ],
+    },
+    {
+        id: 24,
+        text: "The scientist nods in approval to the hatred you show off cilantro. He knew he could trust you." +
+            "However, due to the mistakes you've made the gene promptly fails and the scientist fires you shortly after" +
+            "the incident. Well-,..we can't all make on the first try.",
+        options: [
+            {
+                text: "Cilantro is saved, but your career is in tatters. Maybe don't mention this on your resume...",
+                nextText: 0
+            },
+        ],
+    },
+    {
+        id: 25,
+        text: "You return to the scientist after getting the last glance at the project. You know what you did." +
+            "You gave up all your hard work to save cilantro. The world will never know of your sacrifice. In the days that come" +
+            ", the scientist's plans slowly fall apart due to your sabotage. He doesn't know, and eventually shuts the plans down entirely." +
+            "Job done, cilantro saved. All in a few days' times.",
+        options: [
+            {
+                text: "Huzzah! Cilantro is saved.",
+                nextText: 0
+            },
+        ],
+    },
+    {
+        id: 26,
+        text: "Cilantro was an awful herb anyways. The scientist enacts his plans, and together, you two bring the plant down." +
+            "In the future, nobody likes cilantro. Destroying an entire industry and several family recipes. As for you," +
+            "your career is thriving. The scientist has kept you onboard, and you're working on his next project...",
+        options: [
+            {
+                text: "The world mourns the loss of cilantro, but you celebrate.",
+                nextText: 0
+            },
+        ],
+    },
+    {
+        id: -1,
+        text: "For whatever reason, you quit your work at the scientist's lab. You'll work on your own path, and you won't let" +
+            "one scientist decide what that path may be. Yet, doubt always lingers. Days, weeks, months pass and you notice you" +
+            "start to dislike the taste of cilantro.",
+        options: [
+            {
+                text: "Whatever. You are too busy these days with your own project to care.",
+                nextText: 0
+            },
+        ],
+    },
+    {
+        id: 0,
+        text: "You've reached the end of the game. You can restart here.",
+        options: [
+            {
+                text: "Restart",
+                nextText: -2
+            }
+        ]
     }
 ]
 

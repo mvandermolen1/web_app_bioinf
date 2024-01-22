@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "TextGameServlet", urlPatterns = "/textgame", loadOnStartup = 1)
@@ -24,15 +25,19 @@ public class TextGameServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         //this step is optional; standard settings also suffice
         WebConfig.configureResponse(response);
-        System.out.println(request.getParameter("error"));
-        System.out.println(request.getParameter("id"));
         WebContext ctx = new WebContext(
                 request,
                 response,
                 request.getServletContext(),
                 request.getLocale());
+        HttpSession session = request.getSession();
+        if(session.isNew()){
+            session.setAttribute("total_error", 0);
+        }
         int id = Integer.parseInt(request.getParameter("id"));
         int error = Integer.parseInt(request.getParameter("error"));
+        int old_errors = (int) session.getAttribute("total_error");
+        session.setAttribute("total_error", old_errors + error);
         ctx.setVariable("id", id);
         ctx.setVariable("error", error);
         templateEngine.process("textgame", ctx, response.getWriter());
