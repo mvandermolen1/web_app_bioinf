@@ -56,5 +56,7 @@ If you wish to contribute to the project, please follow these guidelines:
 
 # Acknowledgments
 Hanzehogeschool Groningen, Bioinformatics Department.
+
 Project supervisor: Marcel Kempenaar.
+
 Feel free to reach out for questions or feedback!
