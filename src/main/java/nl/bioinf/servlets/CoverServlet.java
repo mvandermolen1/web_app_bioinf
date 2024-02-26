@@ -21,7 +21,7 @@ public class CoverServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         final ServletContext servletContext = this.getServletContext();
-        this.templateEngine = WebConfig.createTemplateEngine(servletContext);
+        this.templateEngine = WebConfig.getTemplateEngine();
     }
     private static final long serialVersionUID = 1L;
 

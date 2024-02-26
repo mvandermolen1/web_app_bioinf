@@ -15,10 +15,12 @@ import java.io.IOException;
  * DragDrop 'class', a servlet to use for the first drag and drop game
  */
 public class DragDropServlet extends HttpServlet {
+
+    private TemplateEngine templateEngine;
     @Override
     public void init() throws ServletException {
         final ServletContext servletContext = this.getServletContext();
-        WebConfig.createTemplateEngine(servletContext);
+        this.templateEngine = WebConfig.getTemplateEngine();
     }
     private static final long serialVersionUID = 1L;
 
@@ -34,8 +36,7 @@ public class DragDropServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("drag_and_drop_event", ctx, response.getWriter());
+        templateEngine.process("drag_and_drop_event", ctx, response.getWriter());
     }
 
     /**
@@ -49,7 +50,6 @@ public class DragDropServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("drag_and_drop_event", ctx, response.getWriter());
+        templateEngine.process("drag_and_drop_event", ctx, response.getWriter());
     }
 }

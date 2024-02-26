@@ -1,5 +1,6 @@
 package nl.bioinf.servlets;
 import nl.bioinf.config.WebConfig;
+import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,11 +15,13 @@ import java.io.IOException;
  * FillIn 'class', a servlet to use for the fill-in game
  */
 public class FillInServlet extends HttpServlet {
+
+    private TemplateEngine templateEngine;
     @Override
     public void init() throws ServletException {
         System.out.println("Initializing Thymeleaf template engine");
         final ServletContext servletContext = this.getServletContext();
-        WebConfig.createTemplateEngine(servletContext);
+        this.templateEngine = WebConfig.getTemplateEngine();
     }
     private static final long serialVersionUID = 1L;
 
@@ -33,8 +36,7 @@ public class FillInServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("fill_in_blanks", ctx, response.getWriter());
+        templateEngine.process("fill_in_blanks", ctx, response.getWriter());
     }
 
     /**
@@ -48,7 +50,6 @@ public class FillInServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("fill_in_blanks", ctx, response.getWriter());
+        templateEngine.process("fill_in_blanks", ctx, response.getWriter());
     }
 }

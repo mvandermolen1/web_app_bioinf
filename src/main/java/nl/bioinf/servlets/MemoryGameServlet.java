@@ -1,5 +1,6 @@
 package nl.bioinf.servlets;
 import nl.bioinf.config.WebConfig;
+import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,11 +15,13 @@ import java.io.IOException;
  * MemoryGame 'class', a servlet responsible for handling requests of the memorygame
  */
 public class MemoryGameServlet extends HttpServlet {
+
+    private TemplateEngine templateEngine;
     @Override
     public void init() throws ServletException {
         System.out.println("Initializing Thymeleaf template engine");
         final ServletContext servletContext = this.getServletContext();
-        WebConfig.createTemplateEngine(servletContext);
+        this.templateEngine = WebConfig.getTemplateEngine();
     }
     private static final long serialVersionUID = 1L;
 
@@ -33,8 +36,7 @@ public class MemoryGameServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("memorygame", ctx, response.getWriter());
+        templateEngine.process("memorygame", ctx, response.getWriter());
 
     }
 
@@ -49,7 +51,6 @@ public class MemoryGameServlet extends HttpServlet {
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        WebConfig.createTemplateEngine(getServletContext()).
-                process("memorygame", ctx, response.getWriter());
+        templateEngine.process("memorygame", ctx, response.getWriter());
     }
 }
