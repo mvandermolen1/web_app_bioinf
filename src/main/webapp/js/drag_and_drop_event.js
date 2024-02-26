@@ -1,5 +1,4 @@
 let draggable;
-// select the item element by id, that's what the # is for
 const items = document.querySelectorAll(".list-group-item");
 var score = 0;
 
@@ -93,13 +92,24 @@ document.getElementById("checkAnswer").addEventListener("click", function () {
         button.innerText = "Back to the game"
         button.classList.add('btn')
         button.classList.add("btn-outline-light")
-        button.addEventListener("click", redirect)
+        if (score < 5 && window.location.pathname === "/drag"){
+            button.addEventListener("click", () => redirect(10))
+        }
+        else if (score < 5 && window.location.pathname === "/dragProtein"){
+            button.addEventListener("click", () => redirect(14))
+        }
+        else if (score > 7 && window.location.pathname ==="/dragProtein"){
+            button.addEventListener("click", () => redirect(15))
+        }
+        else{
+            button.addEventListener("click", () => redirect(11))
+        }
         document.getElementById("stopButton").appendChild(button);
     }
     result.append(valid);
 })
 
-function redirect(){
-    return window.location.replace("/textgame?error=" + score + "&id=" + 4);
+function redirect(id){
+    return window.location.replace("/textgame?error=" + score + "&id=" + id);
 }
 

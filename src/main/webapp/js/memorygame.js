@@ -126,5 +126,10 @@ function checkStatus() {
     }
 }
 function redirect(option){
-    return window.location.replace("/textgame?error=" + errors + "&id=" + 4);
+    if (errors <= 20) {
+        return window.location.replace("/textgame?error=" + errors + "&id=" + 17);
+    }
+    else{
+        return window.location.replace("/textgame?error=" + errors + "&id=" + 18);
+    }
 }
