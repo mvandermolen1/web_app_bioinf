@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "FillInServlet", urlPatterns = "/fill", loadOnStartup = 1)
+/**
+ * FillIn 'class', a servlet to use for the fill-in game
+ */
 public class FillInServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
@@ -18,15 +21,27 @@ public class FillInServlet extends HttpServlet {
         WebConfig.createTemplateEngine(servletContext);
     }
     private static final long serialVersionUID = 1L;
+
+    /**
+     * @param request, response
+     *     generates the response within the fill_in_blanks html page for post requests
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        process(request, response);
+        WebConfig.configureResponse(response);
+        WebContext ctx = new WebContext(
+                request,
+                response,
+                request.getServletContext(),
+                request.getLocale());
+        WebConfig.createTemplateEngine(getServletContext()).
+                process("fill_in_blanks", ctx, response.getWriter());
     }
+
+    /**
+     * @param request, response
+     *     generates the response within the fill_in_blanks html page for get requests
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        process(request, response);
-    }
-    public void process(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        //this step is optional; standard settings also suffice
         WebConfig.configureResponse(response);
         WebContext ctx = new WebContext(
                 request,

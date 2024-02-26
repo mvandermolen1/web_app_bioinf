@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "MemoryGameServlet", urlPatterns = "/memorygame", loadOnStartup = 1)
+/**
+ * MemoryGame 'class', a servlet responsible for handling requests of the memorygame
+ */
 public class MemoryGameServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
@@ -18,25 +21,28 @@ public class MemoryGameServlet extends HttpServlet {
         WebConfig.createTemplateEngine(servletContext);
     }
     private static final long serialVersionUID = 1L;
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        process(request, response);
 
-    }
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    /**
+     * @param request, response
+     *     generates the response within the memorygame html page for post requests
+     */
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         WebConfig.configureResponse(response);
         WebContext ctx = new WebContext(
                 request,
                 response,
                 request.getServletContext(),
                 request.getLocale());
-        System.out.println(request.getParameter("error"));
-        System.out.println(request.getParameter("id"));
         WebConfig.createTemplateEngine(getServletContext()).
                 process("memorygame", ctx, response.getWriter());
+
     }
-    public void process(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        //this step is optional; standard settings also suffice
+
+    /**
+     * @param request, response
+     *     generates the response within the memory game html page for get requests
+     */
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         WebConfig.configureResponse(response);
         WebContext ctx = new WebContext(
                 request,
