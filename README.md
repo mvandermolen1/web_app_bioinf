@@ -19,8 +19,6 @@ This documentation outlines the process involved in the creation of a web-based 
         │   └───nl
         │       └───bioinf
         │           ├───config         # Configuration files
-        │           ├───game           # Game logic components
-        │           ├───model          # Data model classes
         │           └───servlets        # Java servlets for handling HTTP requests
         ├───resources
         └───webapp
